@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <title>ToDo</title>
+</head>
+<body>
+  <center class="row">
+    <h1><i>Kundalik ishlar</i></h1>
+    <hr />
+  </center>
+
+<div class="col-md-8">
+  {% for i in plans %}
+  <div class="card">
+      <center><b>{{ i.title }}</b></center>
+      <hr/>
+    {{ i.time }}
+      <hr/>
+    {{i.description}}
+      <hr/>
+    {{i.status}}
+      <br />
+      <a href="/delete/{{i.id}}/"><button style="float: right;">O'chirish</button></a>
+  </div>
+  {% endfor %}
+</div>
+<br>
+ <left>
+  <h1>Yangi ToDo qo`shish</h1>
+  <br>
+<form action="/todos/" method="post" > {% csrf_token %}
+  Title:
+  <br>
+  <input type="text" name="title" placeholder="Title">
+      <br>
+  Description:
+  <br>
+  <input type="text" name="desc" placeholder="Description">
+    <br>
+  Time:
+  <br>
+  <input type="datetime-local" name="time" placeholder="Time">
+  <br>
+  Status:
+  <br>
+  <select name="status" >
+    <option value="yangi">Yangi</option>
+    <option value="bajarildi">Bajarildi</option>
+  </select>
+  <br>
+  <br>
+    <button type="submit">Qo`shish</button>
+</form>
+</left>
+</body>
+</html>
